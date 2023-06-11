@@ -1,0 +1,15 @@
+<van-popup show="{{ isShow }}" position="bottom" custom-style="padding: 10px; height: 60%;" closeable="true" bind:close="handleClose">
+  <view style="margin-top: 20px;" />
+  <van-cell-group>
+    <van-field label="手机号" size="large" model:value="{{ phone }}" placeholder="手机号" />
+  </van-cell-group>
+  <van-cell-group>
+    <van-field label="密码" size="large" type="password" model:value="{{ password }}" placeholder="密码（6-18位）" />
+  </van-cell-group>
+  <van-cell-group>
+    <van-field label="昵称" size="large" model:value="{{ nickName }}" placeholder="昵称" />
+  </van-cell-group>
+  <van-cell-group>
+    <van-button round color="#0c34ba" custom-style="width: 100%; margin-top:15px;" bindtap="handleSure">确定</van-button>
+  </van-cell-group>
+</van-popup>

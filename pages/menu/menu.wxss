@@ -1,0 +1,30 @@
+/* pages/menu/menu.wxss */
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+li text.enname {
+  width: 200rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999;
+}
+
+li text.price {
+  color: red;
+  margin-top: 4px;
+  text-align: center;
+}
+
+li image {
+  width: 200rpx;
+  height: 100rpx;
+}

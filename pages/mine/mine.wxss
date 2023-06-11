@@ -1,0 +1,57 @@
+/* pages/mine/mine.wxss */
+.mine_root {
+  position: relative;
+}
+
+.mine_root .userBg {
+  width: 100%;
+  height: 400rpx;
+}
+
+.mine_root .userBg image {
+  width: 100%;
+  height: 100% !important;
+}
+
+.mine_root .contain {
+  margin: 10px;
+  border-radius: 10px;
+  position: absolute;
+  top: 310rpx;
+  left: 0;
+  height: 300rpx;
+  background-image: linear-gradient(180deg, hsla(0, 0%, 100%, .5) 0, hsla(0, 0%, 100%, .5) 0rem, #fff 0);
+  z-index: 9999;
+  width: 95%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.mine_root .header {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.mine_root .userImg {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20px;
+}
+
+.mine_root .userImg image {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+
+.mine_root .nickName {
+  color: #0c34ba;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.mine_root .desc {
+  color: #999;
+  font-size: 14px;
+}

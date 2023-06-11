@@ -1,0 +1,22 @@
+<view>
+  <van-search shape="round" bind:search="handleSearch" bind:cancel="handleCancel" show-action value="{{ value }}" placeholder="请输入搜索关键词" />
+  
+  <view class="list" wx-if="{{searchList.length}}">
+    <view wx:for="{{searchList}}" wx:key="item.id">
+      <image src="{{item.smallImg}}" />
+      <view class="name">{{item.name}}</view>
+      <view class="desc">
+        {{item.desc}}
+      </view>
+      <view class="price" wx:if="{{item.price}}">
+        ￥{{item.price}}
+      </view>
+    </view>
+  </view>
+
+
+  <view wx:else>
+    <van-empty description="空空如也" />
+  </view>
+
+</view>
