@@ -8,14 +8,19 @@ Page({
     date: Date.now(),
     bannerList: [],
     hotList: [],
-    token: wx.getStorageSync('token'),
+    token: "",
     nickName: ""
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载，只会执行一次
    */
   onLoad(options) {
+    // 登录后设置token
+    this.setData({
+      token: wx.getStorageSync('token')
+    });
+
     // 轮播图
     wx.request({
       url: 'http://www.kangliuyong.com:10002/banner',
@@ -41,7 +46,6 @@ Page({
     // 热卖推荐
     wx.request({
       url: 'http://www.kangliuyong.com:10002/typeProducts',
-
       data: {
         appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
         key: 'isHot',
@@ -75,7 +79,7 @@ Page({
     })
   },
 
-  handleInput(){
+  handleInput() {
     wx.navigateTo({
       url: '/pages/search/search',
     })
@@ -95,10 +99,13 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 生命周期函数--监听页面显示，每次页面切换都会执行
    */
   onShow() {
-
+    // 登录后设置token
+    this.setData({
+      token: wx.getStorageSync('token')
+    });
   },
 
   /**

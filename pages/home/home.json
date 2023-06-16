@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+    "van-search": "@vant/weapp/search/index",
+    "ListItem": "../../components/ListItem/ListItem"
   },
   "navigationBarTitleText": "首页"
 }

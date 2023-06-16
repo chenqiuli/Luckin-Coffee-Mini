@@ -1,0 +1,15 @@
+<view class="list">
+  <view wx:for="{{list}}" wx:key="id" class="list_item">
+    <image data-pid="{{ item.pid }}" bindtap="handleDetail" src="{{item.smallImg}}" class="image" />
+    <view class="name">{{item.name}}</view>
+    <view class="desc">
+      {{item.desc}}
+    </view>
+    <view class="price" wx:if="{{item.price}}">
+      ￥{{item.price}}
+    </view>
+    <view wx:if="{{isHot}}" class="tag">
+      热卖
+    </view>
+  </view>
+</view>

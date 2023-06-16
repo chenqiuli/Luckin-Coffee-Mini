@@ -1,0 +1,30 @@
+/* components/TagCom/TagCom.wxss */
+
+.select_item {
+  height: 60rpx;
+  margin-bottom: 10px;
+}
+
+.select_item text {
+  width: 50px;
+  display:inline-block;
+  font-size: 16px;
+}
+
+.tag {
+  width: 140rpx;
+  height: 60rpx;
+  display: inline-block;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 14px;
+  background: #e8e8e8;
+  color: #444;
+  margin-right: 10px;
+}
+
+.active {
+  color: #fff;
+  background-color: #0c34ba;
+}

@@ -1,0 +1,46 @@
+<view class="detail">
+  <view class="header">
+    <van-icon size="16px" name="arrow-left" bind:click="handleClick" />
+    <text>商品详情</text>
+  </view>
+
+  <view class="content">
+    <image src="{{detailInfo.large_img}}" mode="widthFix" />
+
+    <view class="intro">
+      <view class="name">
+        <view>
+          <view style="font-size: 16px;color: #444;">
+            {{detailInfo.name}}
+          </view>
+          <view style="font-size: 12px;color: #999;">
+            {{detailInfo.enname}}
+          </view>
+        </view>
+        <view style="color: #e4393c;font-size: 16px;font-weight: bold;">
+          ￥{{detailInfo.price}}
+        </view>
+      </view>
+
+      <view class="select">
+        <TagCom desc="{{detailInfo.tem_desc}}" active="" list="{{detailInfo.tem}}" tag="tem" />
+        <TagCom desc="{{detailInfo.sugar_desc}}" active="" list="{{detailInfo.sugar}}" tag="sugar" />
+        <TagCom desc="{{detailInfo.cream_desc}}" active="" list="{{detailInfo.cream}}" tag="cream" />
+      </view>
+
+      <view class="count">
+        <view>选择数量</view>
+        <view class="icon">
+          <van-icon name="minus" custom-class="count-icon" size="25px" color="#f78491" bind:click="handleMinus"  />
+          <text>{{count}}</text>
+          <van-icon name="plus" custom-class="count-icon count-icon-add" size="25px" color="#fbc2c8" bind:click="handleAdd" />
+        </view>
+      </view>
+
+
+      <view bindtap="handleCart">
+        加入购物车
+      </view>
+    </view>
+  </view>
+</view>

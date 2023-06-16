@@ -2,17 +2,17 @@
 <view class="home">
 
   <view class="headerView">
-    <view class="text">你好</view>
-    <view class="text" bindtap="handleLogin" wx:if="{{!token.length}}">登录</view>
-    <view class="text" wx:else>{{nickName}}</view>
-    <view class="search">
-      <mp-searchbar ext-class="search" bindtap="handleInput" placeholder="请输入搜索关键词" />
+    <view class="left">
+      <view class="hello">你好</view>
+      <view class="login" bindtap="handleLogin" wx:if="{{!token.length}}">登录</view>
+      <view class="login" wx:else>{{nickName}}</view>
     </view>
+    <van-search custom-class="custom-class" shape="round" value="{{ value }}" bindtap="handleInput" placeholder="请输入搜索关键词" class="search" />
   </view>
 
   <view class="swiperView">
     <swiper circular="{{true}}" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{1000}}" duration="{{500}}">
-      <block wx:for="{{bannerList}}" wx:key="{{item.pid}}">
+      <block wx:for="{{bannerList}}" wx:key="pid">
         <swiper-item>
           <image src="{{item.bannerImg}}" mode="widthFix" class="image" />
         </swiper-item>
@@ -21,19 +21,6 @@
   </view>
 
   <view class="hotView">
-    <view class="text">热卖推荐</view>
-    <view class="list">
-      <view wx:for="{{hotList}}" wx:key="item.id">
-        <image src="{{item.smallImg}}" />
-        <view class="name">{{item.name}}</view>
-        <view class="desc">
-          {{item.desc}}
-        </view>
-        <view class="price">
-          ￥{{item.price}}
-        </view>
-      </view>
-    </view>
-
+    <ListItem list="{{hotList}}" />
   </view>
 </view>

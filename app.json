@@ -1,17 +1,16 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/menu/menu",
     "pages/mine/mine",
     "pages/login/login",
-    "pages/home/home",
-    "pages/index/index",
     "pages/cart/cart",
     "pages/search/search",
-    "pages/test/test"
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#0c34ba",
+    "navigationBarBackgroundColor": "#14C145",
     "navigationBarTitleText": "YY商城",
     "navigationBarTextStyle": "white"
   },

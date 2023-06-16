@@ -6,7 +6,7 @@ Page({
    */
   data: {
     items: [{
-      text: '热卖'
+      text: '热卖推荐'
     }], // 左侧面板的list数据
     mainActiveIndex: 0, // 左侧面板选中的索引
     activeId: null,

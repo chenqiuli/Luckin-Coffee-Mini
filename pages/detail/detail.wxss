@@ -1,0 +1,72 @@
+/* pages/detail/detail.wxss */
+.detail {
+  height: 100vh;
+  background: #f5f5f5;
+}
+
+.header {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.header text {
+  text-align: center;
+  width: 100%;
+  font-size: 16px;
+}
+
+.content image {
+  height: 540rpx;
+  width: 100%;
+}
+
+.intro {
+  padding: 12px 10px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  width: 97%;
+  background: #ffffff;
+  margin: -10px auto;
+  z-index: 9999;
+}
+
+.name {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.count, .count .icon {
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count text {
+  margin: 0 20px;
+}
+
+
+.count-icon{
+  border-radius: 50%;
+  border: 1px solid red;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+}
+
+.count-icon-add {
+  background: #ee0a24;
+}

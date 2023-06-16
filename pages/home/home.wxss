@@ -1,38 +1,57 @@
 /* pages/home/home.wxss */
 .home {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  background: #f5f5f5;
+  padding: 20rpx;
+  box-sizing: border-box;
 }
 
 /* header */
 .headerView {
-  padding: 10rpx 30rpx;
-  box-sizing: border-box;
   width: 100%;
   display: flex;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  border: 1px solid #d8d8da;
+  border-bottom: unset !important;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
-.headerView .text {
-  flex: 1.5;
+.left {
+  flex: 3;
+  display: flex;
+}
+
+.headerView .hello {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.login {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .search {
   flex: 7;
-  height: 60rpx;
-  padding: unset !important;
 }
 
+.custom-class {
+  background: transparent !important;
+}
 
 /* swiper */
 .swiperView {
-  margin-top: 10px;
-  padding: 10px;
+  /* margin-top: 10px; */
+  margin-bottom: 20rpx;
+  padding-top: 1px;
 }
 
 swiper {
-  height: 400rpx;
+  height: 556rpx;
   width: 100%;
 }
 
@@ -42,51 +61,7 @@ swiper {
 }
 
 /* 热卖 */
-.hotView .text {
-  background-color: #0c34ba;
-  margin: 10px 10px 10px 0;
-  font-size: 16px;
-  color: #fff;
-  height: 38px;
-  line-height: 38px;
-  text-align: center;
-  width: 100px !important;
-  border-top-right-radius: 8px;
+.hotView {
+  padding: 20rpx;
+  box-sizing: border-box;
 }
-
-.hotView .list {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.hotView .list>view {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.hotView .list image {
-  width: 300rpx;
-  height: 200rpx;
-}
-
-.hotView .list .name {
-  color: #444;
-  font-size: 16px;
-  margin-top: 4px;
-}
-
-.hotView .list .price {
-  color: red;
-}
-
-.hotView .list .desc {
-  width: 310rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #999;
-} 

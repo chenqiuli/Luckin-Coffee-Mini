@@ -1,6 +1,8 @@
 {
   "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index",
     "van-search": "@vant/weapp/search/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "van-empty": "@vant/weapp/empty/index",
+    "ListItem": "../../components/ListItem/ListItem"  
   }
 }

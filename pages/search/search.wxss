@@ -1,39 +1,57 @@
 /* pages/search/search.wxss */
+.root {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
 
+.search {
+  display: flex;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
 
 .list {
   display: flex;
   flex-wrap: wrap;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
 }
 
-.list>view {
-  flex: 1;
+.record {
+  padding: 20px 10px 18px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.recordList {
+  margin-bottom: 12px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
-.list image {
-  width: 300rpx;
-  height: 200rpx;
-}
-
-.list .name {
+.recordItem {
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 12px;
+  text-align: center;
   color: #444;
-  font-size: 16px;
-  margin-top: 4px;
+  background-color: #e8e8e8;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
-.list .price {
-  color: red;
-}
+.clear {
+  width: 158px;
+  height: 24px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: #e8e8e8;
+  color: #666666;
+  margin: 0 auto;
 
-.list .desc {
-  width: 310rpx;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: #999;
-} 
+}
