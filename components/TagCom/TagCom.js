@@ -26,7 +26,13 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行 
-      // console.log(this.data.active, '-')
+      console.log(this.properties.list[0], '-')
+      // 回显Storage内的饮料选项
+      this.setData({
+        temActive: wx.getStorageSync('temActive'),
+        sugarActive: wx.getStorageSync('sugarActive'),
+        creamActive: wx.getStorageSync('creamActive'),
+      });
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行

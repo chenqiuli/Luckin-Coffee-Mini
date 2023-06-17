@@ -31,16 +31,38 @@
       <view class="count">
         <view>选择数量</view>
         <view class="icon">
-          <van-icon name="minus" custom-class="count-icon" size="25px" color="#f78491" bind:click="handleMinus"  />
+          <van-icon name="minus" custom-class="count-icon" size="25px" color="#f78491" bind:click="handleMinus" />
           <text>{{count}}</text>
           <van-icon name="plus" custom-class="count-icon count-icon-add" size="25px" color="#fbc2c8" bind:click="handleAdd" />
         </view>
       </view>
 
-
-      <view bindtap="handleCart">
-        加入购物车
+      <view class="desc">
+        <view style="margin-bottom: 14px;">
+          商品描述
+        </view>
+        <view style="color: 12px;color: #444;">
+          {{detailInfo.desc}}
+        </view>
       </view>
+
+      <view class="footer">
+        <view class="iconCart iconBag">
+          <van-icon name="bag-o" />
+          <view>购物袋</view>
+          <view class="num"> 
+            8
+          </view>
+        </view>
+        <view class="iconCart">
+          <van-icon name="like-o" />
+          <view>已收藏</view>
+        </view>
+        <view bindtap="handleCart" class="addCart">
+          加入购物车
+        </view>
+      </view>
+
     </view>
   </view>
 </view>

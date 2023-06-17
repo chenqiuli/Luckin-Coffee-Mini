@@ -1,8 +1,8 @@
 <!--components/TagCom/TagCom.wxml-->
-
+<!-- {{list.length}} -->
 <view class="select_item" wx:if="{{list.length}}">
   <text>{{desc}}</text>
-  <view bindtap="handleTap" class="tag {{temActive===item || sugarActive===item || creamActive===item ? 'active' : undefined}} ;" data-name="{{item}}" wx:for="{{list}}" wx:key="index">
+  <view bindtap="handleTap" class="tag {{temActive===item || sugarActive===item || creamActive===item ? 'active' : undefined}}" data-name="{{item}}" wx:for="{{list}}" wx:key="index">
     {{item}}
   </view>
 </view>
