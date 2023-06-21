@@ -1,0 +1,30 @@
+<view class="cartItem" wx:for="{{cartList}}" wx:key="updated_at">
+  <van-swipe-cell right-width="{{ 65 }}">
+    <van-cell-group>
+      <view class="cell__content">
+        <van-checkbox value="{{ checked }}" bind:change="onChange"></van-checkbox>
+        <image src="{{item.small_img}}" mode="widthFix" />
+        <view class="cell_right">
+          <view style="font-size: 14px;">
+            <text style="margin-right: 24px;">{{item.name}}</text>
+            <text style="color: #666666;">{{item.rule}}</text>
+          </view>
+          <view class="enname">
+            {{item.enname}}
+          </view>
+          <view class="price_area">
+            <view style="color: #e4393c;font-size: 12px;font-weight: bold;">￥{{item.price}}</view>
+            <view class="icon">
+              <van-icon name="minus" custom-class="count-icon" size="20px" color="#f78491" data-type="minus" data-sid="{{item.sid}}" data-count="{{item.count}}" bind:click="handleChangeCount" />
+              <text>{{item.count}}</text>
+              <van-icon name="plus" custom-class="count-icon count-icon-add" size="20px" color="#fbc2c8" data-type="plus" data-sid="{{item.sid}}" data-count="{{item.count}}" bind:click="handleChangeCount" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-cell-group>
+    <view slot="right" class="cell__right" bindtap="handelDel" data-sid="{{item.sid}}">
+      删除
+    </view>
+  </van-swipe-cell>
+</view>

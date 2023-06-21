@@ -93,10 +93,10 @@ Page({
   },
 
   handleAdd() {
-    if (this.data.count >= 5) {
-      Toast.fail('宝贝数量最多为5哦~');
-      return;
-    }
+    // if (this.data.count >= 5) {
+    //   Toast.fail('宝贝数量最多为5哦~');
+    //   return;
+    // }
     this.setData({
       count: this.data.count + 1
     })
