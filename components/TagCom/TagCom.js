@@ -1,7 +1,7 @@
 // components/TagCom/TagCom.js
 Component({
   /**
-   * 组件的属性列表，访问properties数据this.data.xx
+   * 组件的属性列表，访问properties数据this.properties.xx，数组访问不了，需要监听
    */
   properties: {
     desc: {
@@ -10,7 +10,8 @@ Component({
     },
     list: {
       type: Array,
-      value: []
+      value: [],
+      observer: 'onListChange'
     },
     tag: {
       type: String,
@@ -20,19 +21,18 @@ Component({
     active: {
       type: String,
       value: ""
-    }
+    },
+    pid: {
+      type: String,
+      value: ""
+    },
   },
 
   lifetimes: {
-    attached: function () {
+    attached() {
       // 在组件实例进入页面节点树时执行 
-      console.log(this.properties.list[0], '-')
-      // 回显Storage内的饮料选项
-      this.setData({
-        temActive: wx.getStorageSync('temActive'),
-        sugarActive: wx.getStorageSync('sugarActive'),
-        creamActive: wx.getStorageSync('creamActive'),
-      });
+    
+
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
@@ -54,7 +54,7 @@ Component({
   methods: {
 
     handleTap(event) {
-      // console.log(event.target.dataset.name)  
+      // console.log(event.target.dataset.name)
       let key;
       if (this.data.tag === 'tem') {
         key = 'temActive'
@@ -67,9 +67,22 @@ Component({
       this.setData({
         [key]: value,
       });
+      // console.log(value, 'value')
       // 存入缓存，加入购物车需要入参用
       wx.setStorageSync(key, value);
+      wx.setStorageSync('detailPid', this.properties.pid)
     },
+
+    // 监听list的变化
+    // onListChange(newVal, oldVal) {
+    //   console.log('监听的变化呀')
+    //   // 回显Storage内的饮料选项
+    //   this.setData({
+    //     temActive: newVal[0],
+    //     sugarActive: newVal[0],
+    //     creamActive: newVal[0],
+    //   });
+    // }
   }
 
 

@@ -1,4 +1,5 @@
 // pages/detail/detail.js
+import Toast from '@vant/weapp/toast/toast';
 Page({
 
   /**
@@ -24,7 +25,7 @@ Page({
         pid: options.pid, // 
       },
       success: res => {
-        console.log(res.data.result[0].sugar)
+        console.log(res.data.result[0])
         const {
           tem,
           sugar,
@@ -42,33 +43,48 @@ Page({
     });
   },
 
+  handleBack() {
+    wx.navigateBack();
+  },
 
 
+
+  // 未登录也可以加入购物车
   handleCart() {
-    let rule = `${wx.getStorageSync('temActive')}/${wx.getStorageSync('sugarActive')}/${wx.getStorageSync('creamActive')}`;
-    if (rule[rule.length - 1] === '/') rule = rule.slice(0, rule.length - 1) // 去除最后一个/
-    if (rule[0] === '/') rule = rule.slice(1) // 去除第一个/
-    console.log(rule)
-    wx.request({
-      url: 'http://www.kangliuyong.com:10002/addShopcart',
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      data: {
-        pid: this.data.detailInfo.pid,
-        count: this.data.count,
-        rule,
-        tokenString: wx.getStorageSync('token'),
-        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA="
-      },
-      success: res => {
-        console.log(res)
-      }
-    })
+    if (wx.getStorageSync('detailPid') === this.data.detailInfo.pid) {
+      let rule = `${wx.getStorageSync('temActive')}/${wx.getStorageSync('sugarActive')}/${wx.getStorageSync('creamActive')}`;
+      if (rule[rule.length - 1] === '/') rule = rule.slice(0, rule.length - 1) // 去除最后一个/
+      if (rule[0] === '/') rule = rule.slice(1) // 去除第一个/
+      console.log(rule)
+      wx.request({
+        url: 'http://www.kangliuyong.com:10002/addShopcart',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        method: 'POST',
+        data: {
+          pid: this.data.detailInfo.pid,
+          count: this.data.count,
+          rule,
+          tokenString: wx.getStorageSync('token'),
+          appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA="
+        },
+        success: res => {
+          console.log(res)
+          Toast.success('商品已加入购物车');
+          wx.switchTab({
+            url: '/pages/cart/cart',
+          });
+        }
+      })
+    } else {
+      Toast.fail('请先选择商品属性');
+    }
   },
 
   handleMinus() {
     if (this.data.count <= 1) {
+      Toast.fail('宝贝数量最少为1哦~');
       return;
     }
     this.setData({
@@ -78,6 +94,7 @@ Page({
 
   handleAdd() {
     if (this.data.count >= 5) {
+      Toast.fail('宝贝数量最多为5哦~');
       return;
     }
     this.setData({
@@ -107,10 +124,13 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 生命周期函数--监听页面卸载，组件离开就会执行
    */
   onUnload() {
-
+    wx.removeStorageSync('detailPid');
+    wx.removeStorageSync('temActive');
+    wx.removeStorageSync('sugarActive');
+    wx.removeStorageSync('creamActive');
   },
 
   /**

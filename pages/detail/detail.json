@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
-    "TagCom": "../../components/TagCom/TagCom"
+    "TagCom": "../../components/TagCom/TagCom",
+    "van-toast": "@vant/weapp/toast/index"
   }
 }

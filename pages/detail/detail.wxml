@@ -1,6 +1,6 @@
 <view class="detail">
   <view class="header">
-    <van-icon size="16px" name="arrow-left" bind:click="handleClick" />
+    <van-icon size="16px" name="arrow-left" bind:click="handleBack" />
     <text>商品详情</text>
   </view>
 
@@ -23,9 +23,9 @@
       </view>
 
       <view class="select">
-        <TagCom desc="{{detailInfo.tem_desc}}" active="" list="{{detailInfo.tem}}" tag="tem" />
-        <TagCom desc="{{detailInfo.sugar_desc}}" active="" list="{{detailInfo.sugar}}" tag="sugar" />
-        <TagCom desc="{{detailInfo.cream_desc}}" active="" list="{{detailInfo.cream}}" tag="cream" />
+        <TagCom desc="{{detailInfo.tem_desc}}" pid="{{detailInfo.pid}}" active="" list="{{detailInfo.tem}}" tag="tem" />
+        <TagCom desc="{{detailInfo.sugar_desc}}" pid="{{detailInfo.pid}}" active="" list="{{detailInfo.sugar}}" tag="sugar" />
+        <TagCom desc="{{detailInfo.cream_desc}}" pid="{{detailInfo.pid}}" active="" list="{{detailInfo.cream}}" tag="cream" />
       </view>
 
       <view class="count">
@@ -50,7 +50,7 @@
         <view class="iconCart iconBag">
           <van-icon name="bag-o" />
           <view>购物袋</view>
-          <view class="num"> 
+          <view class="num">
             8
           </view>
         </view>
@@ -65,4 +65,6 @@
 
     </view>
   </view>
+
+  <van-toast id="van-toast" />
 </view>

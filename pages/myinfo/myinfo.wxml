@@ -1,0 +1,5 @@
+<view>
+
+  <van-toast id="van-toast" />
+  <van-button type="primary" bindtap="hanldeTap">按钮</van-button>
+</view>
