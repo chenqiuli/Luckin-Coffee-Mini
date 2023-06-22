@@ -2,6 +2,7 @@
 .cart {
   background-color: #f5f5f5;
   padding-bottom: 50px;
+  height: 100%;
 }
 
 .nav {
@@ -32,4 +33,10 @@
   height: 50px;
   padding: 0 10px;
   box-sizing: border-box;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -6,7 +6,10 @@ Page({
    */
   data: {
     cartList: [],
-    isclickright: false
+    isclickright: false, // 是否点击了编辑
+    allChecked: false, // 全选
+    totalCount: 0, // 总和
+    isLogin: false
   },
 
   onClickLeft() {
@@ -14,22 +17,15 @@ Page({
   },
 
   onClickRight() {
-    if (!this.data.isclickright) {
-      // 编辑-完成  做到这里
-      this.setData({
-        isclickright: true
-      });
-    } else {
-      // 完成-编辑
-      this.setData({
-        isclickright: false
-      });
-    }
+    this.setData({
+      isclickright: !this.data.isclickright
+    });
   },
 
-  handleParent(event) {
+  // + / - 操作
+  handleCountChange(event) {
     // 修改数量，修改整个list，setData重新render
-    console.log("监听到了子组件", event.detail);
+    // console.log("监听到了子组件", event.detail);
     const {
       sid,
       count
@@ -42,7 +38,8 @@ Page({
     })
     this.setData({
       cartList: newList
-    })
+    });
+    this.totalCount();
     // 修改购物车数量接口
     wx.request({
       url: 'http://www.kangliuyong.com:10002/modifyShopcartCount',
@@ -65,8 +62,30 @@ Page({
         }
       }
     })
-
   },
+
+  // 单个选中
+  handleCheckedChange(event) {
+    const {
+      sid,
+      checked
+    } = event.detail;
+    this.setData({
+      cartList: this.data.cartList.map(item => {
+        if (item.sid === sid) {
+          item.checked = checked;
+        }
+        return item;
+      })
+    });
+    // 联动全选
+    const checkedLen = this.data.cartList.filter(item => item.checked).length;
+    this.setData({
+      allChecked: checkedLen === this.data.cartList.length ? true : false
+    })
+    this.totalCount();
+  },
+
 
   // 获取购物车列表
   fetchCartList() {
@@ -77,15 +96,22 @@ Page({
         tokenString: wx.getStorageSync('token')
       },
       success: res => {
+        console.log(res.data.result, '=-=')
         this.setData({
-          cartList: res.data.result
+          cartList: res.data.result?.map(item => {
+            return {
+              ...item,
+              // 全部加上checked=false
+              checked: false
+            }
+          })
         })
       }
     })
   },
 
   // 删除购物车
-  delCartList(event) {
+  delCartList(sids) {
     wx.request({
       url: 'http://www.kangliuyong.com:10002/deleteShopcart',
       method: 'POST',
@@ -95,7 +121,7 @@ Page({
       data: {
         appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
         tokenString: wx.getStorageSync('token'),
-        sids: event.detail
+        sids
       },
       success: res => {
         // console.log(res)
@@ -109,11 +135,65 @@ Page({
     })
   },
 
+  // 求和
+  totalCount() {
+    let total = 0;
+    this.data.cartList.filter(item => {
+      if (item.checked) {
+        total += item.count * Number(item.price)
+      }
+      return total;
+    });
+    this.setData({
+      totalCount: total.toFixed(2)
+    });
+  },
+
+  // 单个删除
+  handleSingleDel(event) {
+    this.delCartList(event.detail);
+  },
+
+  // 批量删除
+  handleAllDelete() {
+    const sids = []
+    this.data.cartList.filter(item => {
+      if (item.checked) {
+        sids.push(item.sid);
+      }
+    })
+    this.delCartList(JSON.stringify(sids))
+  },
+
+  // 全选
+  handleAllChange(event) {
+    this.setData({
+      cartList: this.data.cartList.map(item => {
+        return {
+          ...item,
+          checked: event.detail
+        }
+      }),
+      allChecked: event.detail,
+    });
+    this.totalCount();
+  },
+
+  handleLogin() {
+    wx.redirectTo({
+      url: '/pages/login/login',
+    });
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // console.log("onLoad")
+    this.setData({
+      isLogin: wx.getStorageSync('token') ? true : false
+    })
     this.fetchCartList();
   },
 
@@ -121,14 +201,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // console.log("onShow");
+    this.setData({
+      isLogin: wx.getStorageSync('token') ? true : false
+    })
     this.fetchCartList();
   },
 

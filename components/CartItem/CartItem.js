@@ -6,8 +6,12 @@ Component({
   properties: {
     cartList: {
       type: Array,
-      vale: []
+      value: []
     },
+    isclickright: {
+      type: Boolean,
+      value: false
+    }
 
   },
 
@@ -33,7 +37,7 @@ Component({
         return;
       }
 
-      this.triggerEvent("ParentEvent", {
+      this.triggerEvent("CountChange", {
         sid,
         count: type === 'minus' ? count - 1 : count + 1,
       });
@@ -43,8 +47,16 @@ Component({
       const sid = event.target.dataset.sid;
       // 在父组件中删除完重新调用查询购物车接口
       this.triggerEvent("DelCartList", JSON.stringify([sid]));
-    }
+    },
 
+    handleChange(event) {
+      console.log(event)
+      const sid = event.target.dataset.sid;
+      this.triggerEvent("CheckedChange", {
+        sid,
+        checked: event.detail
+      })
+    }
 
   }
 })

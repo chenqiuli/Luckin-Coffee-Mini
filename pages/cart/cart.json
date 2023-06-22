@@ -3,6 +3,7 @@
     "van-button": "@vant/weapp/button/index",
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-empty": "@vant/weapp/empty/index",
     "CartItem": "../../components/CartItem/CartItem"
   }
 }

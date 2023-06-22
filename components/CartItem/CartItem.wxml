@@ -2,7 +2,7 @@
   <van-swipe-cell right-width="{{ 65 }}">
     <van-cell-group>
       <view class="cell__content">
-        <van-checkbox value="{{ checked }}" bind:change="onChange"></van-checkbox>
+        <van-checkbox disabled="{{!isclickright}}" value="{{ item.checked }}" data-sid="{{item.sid}}" bind:change="handleChange"></van-checkbox>
         <image src="{{item.small_img}}" mode="widthFix" />
         <view class="cell_right">
           <view style="font-size: 14px;">

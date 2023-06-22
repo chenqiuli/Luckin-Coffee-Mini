@@ -1,4 +1,4 @@
-const isAuth = () => {
+function isAuth() {
   return wx.getStorageSync('token') ? true : false
 }
 

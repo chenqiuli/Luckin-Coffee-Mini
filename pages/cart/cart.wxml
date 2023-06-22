@@ -1,22 +1,30 @@
 <view class="cart">
-  <van-nav-bar custom-class="nav" title="购物袋" left-text="返回" right-text="{{isclickright?'完成':'编辑'}}" left-arrow bind:click-left="onClickLeft" bind:click-right="onClickRight" />
+  <van-nav-bar custom-class="nav" title="购物袋" left-text="返回" right-text="{{isLogin ? (isclickright?'完成':'编辑'): ''}}" left-arrow bind:click-left="onClickLeft" bind:click-right="onClickRight" />
   <view class="shopbag">
     <image src="../../images/shopbag_bg.png" mode="widthFix" />
   </view>
 
-  <view class="cartslist">
-    <CartItem cartList="{{cartList}}" bindParentEvent="handleParent" bindDelCartList="delCartList" />
+  <view wx:if="{{isLogin}}">
+    <view class="cartslist">
+      <CartItem isclickright="{{isclickright}}" cartList="{{cartList}}" bindCountChange="handleCountChange" bindDelCartList="handleSingleDel" bindCheckedChange="handleCheckedChange" />
+    </view>
+
+    <view class="footer">
+      <van-checkbox disabled="{{!isclickright}}" value="{{ allChecked }}" bind:change="handleAllChange">全选</van-checkbox>
+      <view wx:if="{{!isclickright}}">
+        <text style="margin-right: 10px;">合计：￥<text style="color: #ee0a24;font-size: 24px;">{{totalCount}}</text></text>
+        <van-button color="#f11a27" round type="default" custom-style="height: 40px">提交订单</van-button>
+      </view>
+      <view wx:else>
+        <van-button color="#f11a27" round type="default" custom-style="height: 40px" bind:click="handleAllDelete">删除选择</van-button>
+      </view>
+    </view>
   </view>
 
-  <view class="footer">
-    <van-checkbox value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
-    <view wx:if="{{!isclickright}}">
-      <text style="margin-right: 10px;">合计：￥<text style="color: #ee0a24;font-size: 24px;">0.00</text></text>
-      <van-button color="#f11a27" round type="default" custom-style="height: 40px">提交订单</van-button>
-    </view>
-    <view wx:else>
-      <van-button color="#f11a27" round type="default" custom-style="height: 40px">删除选择</van-button>
-    </view>
+  <view wx:else class="login">
+    <van-empty image="error" description="请先登录" />
+    <van-button color="#0c34ba" round type="default" custom-style="height: 45px" bind:click="handleLogin">去登录</van-button>
   </view>
+
 
 </view>
