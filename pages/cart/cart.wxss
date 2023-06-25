@@ -5,10 +5,6 @@
   height: 100%;
 }
 
-.nav {
-  padding-top: unset !important;
-  color: #0c34ba !important;
-}
 
 .shopbag image {
   height: 50px;

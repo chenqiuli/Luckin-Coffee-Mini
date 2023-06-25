@@ -12,8 +12,8 @@
     <view class="footer">
       <van-checkbox disabled="{{!isclickright}}" value="{{ allChecked }}" bind:change="handleAllChange">全选</van-checkbox>
       <view wx:if="{{!isclickright}}">
-        <text style="margin-right: 10px;">合计：￥<text style="color: #ee0a24;font-size: 24px;">{{totalCount}}</text></text>
-        <van-button color="#f11a27" round type="default" custom-style="height: 40px">提交订单</van-button>
+        <text style="margin-right: 10px;">合计：<text style="color: #ee0a24;font-size: 22px;">￥{{totalCount}}</text></text>
+        <van-button color="#f11a27" round type="default" custom-style="height: 40px" bind:click="handleSubmit">提交订单</van-button>
       </view>
       <view wx:else>
         <van-button color="#f11a27" round type="default" custom-style="height: 40px" bind:click="handleAllDelete">删除选择</van-button>

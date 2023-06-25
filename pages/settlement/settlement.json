@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "CartItem": "../../components/CartItem/CartItem",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

@@ -1,0 +1,45 @@
+/* pages/settlement/settlement.wxss */
+.settlement {
+  background: #f5f5f5;
+  height: 100%;
+  
+}
+
+.settleContainer {
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.orderInfo {
+  padding: 20px 0px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.orderInfo .title {
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.totalInfo {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dotted #ececec;
+  height: 50px;
+  line-height: 50px;
+}
+
+.totalInfo view:first-child {
+  color: #666;
+}
+
+.totalInfo view:last-child {
+  color: #e4393c;
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 22px;
+}

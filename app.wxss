@@ -13,3 +13,10 @@
 page {
   height: 100% !important;
 }
+
+/* 导航栏全局样式 */
+.nav {
+  padding-top: unset !important;
+  color: #0c34ba !important;
+  height: 47px !important;
+}

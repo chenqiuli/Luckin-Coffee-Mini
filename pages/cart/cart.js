@@ -185,6 +185,43 @@ Page({
     });
   },
 
+  // 提交订单
+  handleSubmit() {
+    const sids = [];
+    this.data.cartList.forEach(item => {
+      if (item.checked) {
+        sids.push(item.sid)
+      }
+    });
+    if(!sids.length) {
+      wx.showToast({
+        title: '请先选择商品',
+        icon: 'error'
+      });
+      return;
+    }
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/commitShopcart',
+      method: 'GET',
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token'),
+        sids
+      },
+      success: res => {
+        console.log(res)
+        if(res.data.code === 50000){
+          wx.showToast({
+            title: "提交订单成功"
+          });
+          wx.navigateTo({
+            url: '/pages/settlement/settlement',
+          });
+        }
+      }
+    })
+  },
+
 
 
   /**
@@ -200,8 +237,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示

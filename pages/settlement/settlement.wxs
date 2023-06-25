@@ -1,0 +1,23 @@
+function num(list) {
+  var num = 0;
+  for (var i = 0; i < list.length; i++) {
+    num += list[i].count;
+  }
+  return num;
+}
+
+
+function total(list) {
+  var total = 0;
+  for (var i = 0; i < list.length; i++) {
+    total += list[i].count * list[i].price;
+  }
+  return total;
+}
+
+
+module.exports = {
+  num: num,
+  total: total
+};
+

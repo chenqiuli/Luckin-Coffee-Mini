@@ -2,7 +2,7 @@
   <van-swipe-cell right-width="{{ 65 }}">
     <van-cell-group>
       <view class="cell__content">
-        <van-checkbox disabled="{{!isclickright}}" value="{{ item.checked }}" data-sid="{{item.sid}}" bind:change="handleChange"></van-checkbox>
+        <van-checkbox wx:if="{{isShowCheckbox}}" disabled="{{!isclickright}}" value="{{ item.checked }}" data-sid="{{item.sid}}" bind:change="handleChange"></van-checkbox>
         <image src="{{item.small_img}}" mode="widthFix" />
         <view class="cell_right">
           <view style="font-size: 14px;">
@@ -14,12 +14,16 @@
           </view>
           <view class="price_area">
             <view style="color: #e4393c;font-size: 12px;font-weight: bold;">￥{{item.price}}</view>
-            <view class="icon">
+            <view class="icon" wx:if="{{isShowCheckbox}}">
               <van-icon name="minus" custom-class="count-icon" size="20px" color="#f78491" data-type="minus" data-sid="{{item.sid}}" data-count="{{item.count}}" bind:click="handleChangeCount" />
               <text>{{item.count}}</text>
               <van-icon name="plus" custom-class="count-icon count-icon-add" size="20px" color="#fbc2c8" data-type="plus" data-sid="{{item.sid}}" data-count="{{item.count}}" bind:click="handleChangeCount" />
             </view>
+            <view wx:else>
+              ×{{item.count}}
+            </view>
           </view>
+
         </view>
       </view>
     </van-cell-group>

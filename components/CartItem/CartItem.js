@@ -4,15 +4,21 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    // 遍历数组
     cartList: {
       type: Array,
       value: []
     },
+    // 单个选项的checkbox是否禁用
     isclickright: {
       type: Boolean,
       value: false
-    }
-
+    },
+    // 是否显示单个选项的checkbox，同时控制：右边展示数量（可操作）或展示数量（不可操作）
+    isShowCheckbox: {
+      type: Boolean,
+      value: true
+    },
   },
 
 
