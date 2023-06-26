@@ -94,6 +94,12 @@ Page({
     });
   },
 
+  handleArea() {
+    wx.navigateTo({
+      url: "/pages/areamanagement/areamanagement",
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

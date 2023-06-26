@@ -1,0 +1,32 @@
+<view class="addarea">
+  <van-nav-bar custom-class="nav" title="{{type === 'add' ?'新增':'编辑'}}地址" left-text="返回" left-arrow bind:click-left="onClickLeft" />
+
+  <view class="form">
+    <view class="allView">
+      <van-cell-group inset>
+        <van-field value="{{ name }}" clearable label="姓名" placeholder="姓名" data-key="name" bind:change="handleChange" />
+        <van-field value="{{ tel }}" type="tel" clearable label="电话" placeholder="电话" data-key="tel" bind:change="handleChange" />
+        <van-field value="{{ mainarea }}" is-link readonly label="地区" placeholder="地区" bind:tap="onClick" />
+        <van-popup show="{{ show }}" round position="bottom">
+          <van-area wx:if="{{ show }}" value="{{areaCode}}" area-list="{{ areaList }}" bind:cancel="onClose" bind:confirm="onConfirm" />
+        </van-popup>
+        <van-field value="{{ addressDetail }}" clearable label="详细地址" placeholder="详细地址" data-key="addressDetail" bind:change="handleChange" />
+        <van-field value="{{ postalCode }}" clearable label="邮政编码" placeholder="邮政编码" data-key="postalCode" bind:change="handleChange" />
+      </van-cell-group>
+    </view>
+
+    <view class="defaultView">
+      <van-cell title="设为默认收货地址" custom-class="defaultCell">
+        <van-switch slot="right-icon" checked="{{ isDefault }}" bind:change="onChange" />
+      </van-cell>
+    </view>
+  </view>
+
+  <view class="save_button">
+    <van-button type="default" bind:click="handleSave" color="#0c34ba" custom-style="width: 100%; height: 40px;" round>保存</van-button>
+  </view>
+
+  <view class="save_button">
+    <van-button type="default" bind:click="handleDel" custom-style="width: 100%; height: 40px;" round>删除</van-button>
+  </view>
+</view>

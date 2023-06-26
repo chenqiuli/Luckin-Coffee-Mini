@@ -1,18 +1,22 @@
 // pages/myinfo/myinfo.js
 import Toast from '@vant/weapp/toast/toast';
-
+import {
+  addressList
+} from '../../utils/address';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    areaList: addressList
   },
+
+
 
   hanldeTap() {
 
-  Toast('我是提示文案，建议不超过十五字~');
+    Toast('我是提示文案，建议不超过十五字~');
   },
 
   /**

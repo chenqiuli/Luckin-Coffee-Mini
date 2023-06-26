@@ -193,7 +193,7 @@ Page({
         sids.push(item.sid)
       }
     });
-    if(!sids.length) {
+    if (!sids.length) {
       wx.showToast({
         title: '请先选择商品',
         icon: 'error'
@@ -210,13 +210,16 @@ Page({
       },
       success: res => {
         console.log(res)
-        if(res.data.code === 50000){
+        if (res.data.code === 50000) {
           wx.showToast({
             title: "提交订单成功"
           });
           wx.navigateTo({
             url: '/pages/settlement/settlement',
           });
+          // 存储提交订单的商品的sid进缓存，提交订单页面传进接口入参
+          const local_sids = wx.getStorageSync('submit_sids');
+          wx.setStorageSync('submit_sids', Array.from(new Set([...local_sids, ...sids])));
         }
       }
     })

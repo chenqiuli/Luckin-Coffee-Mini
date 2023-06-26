@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-field": "@vant/weapp/field/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-cascader": "@vant/weapp/cascader/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-switch": "@vant/weapp/switch/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
+  }
+}

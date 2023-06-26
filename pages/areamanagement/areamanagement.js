@@ -1,39 +1,48 @@
-// pages/settlement/settlement.js
+// pages/areamanagement/areamanagement.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    orderList: []
+    areaList: []
   },
 
+
+  onClickLeft() {
+    wx.navigateBack()
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     wx.request({
-      url: 'http://www.kangliuyong.com:10002/commitShopcart',
+      url: 'http://www.kangliuyong.com:10002/findAddress',
       data: {
         appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
-        tokenString: wx.getStorageSync('token'),
-        // 这个入参有问题，接口没提供查询订单页面所有的信息。
-        // 接口没有提供，我在购物车页面点击提交订单后，把商品sid存到localStorage内，取到这里查询。
-        sids: JSON.stringify(wx.getStorageSync('submit_sids'))
+        tokenString: wx.getStorageSync('token')
       },
       success: res => {
-        console.log(res, '=-=')
-        if (res.data.code === 50000) {
-          this.setData({
-            orderList: res.data.result
-          });
-        }
-      }
+        console.log(res.data.result, '=-=')
+        this.setData({
+          areaList: res.data.result
+        });
+      } 
     })
   },
 
-  onClickLeft() {
-    wx.navigateBack();
+  handleAdd() {
+    wx.navigateTo({
+      url: '/pages/addarea/addarea?type=add',
+    });
+  },
+
+  handleEdit(e) {
+    const aid = e.target.dataset.aid;
+    wx.navigateTo({
+      url: `/pages/addarea/addarea?type=edit&aid=${aid}`,
+    });
   },
 
   /**

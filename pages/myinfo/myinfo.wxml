@@ -2,4 +2,5 @@
 
   <van-toast id="van-toast" />
   <van-button type="primary" bindtap="hanldeTap">按钮</van-button>
+  <van-area area-list="{{ areaList }}" value="110107"  />
 </view>
