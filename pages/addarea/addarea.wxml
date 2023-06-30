@@ -5,7 +5,7 @@
     <view class="allView">
       <van-cell-group inset>
         <van-field value="{{ name }}" clearable label="姓名" placeholder="姓名" data-key="name" bind:change="handleChange" />
-        <van-field value="{{ tel }}" type="tel" clearable label="电话" placeholder="电话" data-key="tel" bind:change="handleChange" />
+        <van-field value="{{ tel }}" clearable label="电话" placeholder="电话" data-key="tel" bind:change="handleChange" />
         <van-field value="{{ mainarea }}" is-link readonly label="地区" placeholder="地区" bind:tap="onClick" />
         <van-popup show="{{ show }}" round position="bottom">
           <van-area wx:if="{{ show }}" value="{{areaCode}}" area-list="{{ areaList }}" bind:cancel="onClose" bind:confirm="onConfirm" />
@@ -26,7 +26,7 @@
     <van-button type="default" bind:click="handleSave" color="#0c34ba" custom-style="width: 100%; height: 40px;" round>保存</van-button>
   </view>
 
-  <view class="save_button">
+  <view class="save_button" wx:if="{{type === 'edit'}}">
     <van-button type="default" bind:click="handleDel" custom-style="width: 100%; height: 40px;" round>删除</van-button>
   </view>
 </view>

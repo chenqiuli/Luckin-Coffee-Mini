@@ -3,6 +3,22 @@
 <view class="settlement">
   <van-nav-bar custom-class="nav" title="订单结算" left-text="返回" left-arrow bind:click-left="onClickLeft" />
 
+  <view class="chooseArea">
+    <view class="top">
+      选择地址
+      <van-icon name="arrow" bind:click="handleClick" />
+    </view>
+    <van-cell center custom-class="default_cell" label="{{defaultArea.province}}{{defaultArea.city}}{{defaultArea.county}}{{defaultArea.addressDetail}}">
+      <view slot="title">
+        <view class="van-cell-text-top">
+          <text>{{defaultArea.name}}  </text>
+          <text>{{defaultArea.tel}}  </text>
+          <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{defaultArea.isDefault}}">默认</van-tag>
+        </view>
+      </view>
+    </van-cell>
+  </view>
+
   <view class="settleContainer">
     <view class="orderInfo">
       <view class="title">
@@ -24,4 +40,21 @@
     </view>
   </view>
 
+  <van-popup closeable position="bottom" show="{{ show }}" custom-class="modal" bind:close="onClose">
+    <view>
+      选择地址
+    </view>
+    <view wx:for="{{areaList}}" wx:key="item.id" class="cell">
+      <van-cell center label="{{item.province}}{{item.city}}{{item.county}}{{item.addressDetail}}">
+        <van-checkbox slot="icon" value="{{ checkedIndex === item.id }}" data-id="{{item.id}}" bind:change="onChange"></van-checkbox>
+        <view slot="title">
+          <view class="van-cell-text">
+            <text>{{item.name}} </text>
+            <text>{{item.tel}} </text>
+            <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{item.isDefault}}">默认</van-tag>
+          </view>
+        </view>
+      </van-cell>
+    </view>
+  </van-popup>
 </view>

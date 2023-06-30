@@ -1,16 +1,16 @@
 {
   "pages": [
-    "pages/areamanagement/areamanagement",
-    "pages/cart/cart",
     "pages/home/home",
+    "pages/cart/cart",
     "pages/menu/menu",
     "pages/mine/mine",
     "pages/login/login",
     "pages/search/search",
     "pages/detail/detail",
     "pages/myinfo/myinfo",
+    "pages/addarea/addarea",
     "pages/settlement/settlement",
-    "pages/addarea/addarea"
+    "pages/areamanagement/areamanagement"
   ],
   "window": {
     "backgroundTextStyle": "light",

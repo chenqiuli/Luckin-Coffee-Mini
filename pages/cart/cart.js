@@ -61,7 +61,7 @@ Page({
           })
         }
       }
-    })
+    });
   },
 
   // 单个选中
@@ -82,7 +82,7 @@ Page({
     const checkedLen = this.data.cartList.filter(item => item.checked).length;
     this.setData({
       allChecked: checkedLen === this.data.cartList.length ? true : false
-    })
+    });
     this.totalCount();
   },
 
@@ -107,7 +107,7 @@ Page({
           })
         })
       }
-    })
+    });
   },
 
   // 删除购物车
@@ -132,7 +132,7 @@ Page({
           this.fetchCartList();
         }
       }
-    })
+    });
   },
 
   // 求和
@@ -225,15 +225,17 @@ Page({
     })
   },
 
-
+  judgeIsLogin(){
+    this.setData({
+      isLogin: wx.getStorageSync('token') ? true : false
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({
-      isLogin: wx.getStorageSync('token') ? true : false
-    })
+    this.judgeIsLogin();
     this.fetchCartList();
   },
 
@@ -246,9 +248,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setData({
-      isLogin: wx.getStorageSync('token') ? true : false
-    })
+    this.judgeIsLogin();
     this.fetchCartList();
   },
 
@@ -263,7 +263,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    this.setData({
+      totalCount: 0
+    });
   },
 
   /**

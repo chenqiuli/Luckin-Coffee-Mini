@@ -5,13 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orderList: []
+    orderList: [],
+    show: false,
+    areaList: [],
+    checkedIndex: 0, // Popup弹窗：初始化是默认那个index
+    defaultArea: {} // 页面上方：选择地址区域默认地址展示
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 获取订单信息
     wx.request({
       url: 'http://www.kangliuyong.com:10002/commitShopcart',
       data: {
@@ -29,11 +34,66 @@ Page({
           });
         }
       }
-    })
+    });
+    // 获取地址信息
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/findAddress',
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token')
+      },
+      success: res => {
+        this.setData({
+          areaList: res.data.result,
+        }, () => {
+          // 获取完地址列表后设checkedIndex为默认地址
+          const {
+            id
+          } = this.data.areaList.find(item => item.isDefault === 1);
+          this.setData({
+            checkedIndex: id
+          }, () => {
+            this.setDefaultArea();
+          });
+        });
+      }
+    });
+  },
+
+  setDefaultArea() {
+    // 默认展示在选择地址区域的地址
+    const defaultArea = this.data.areaList.find(item => item.id === this.data.checkedIndex);
+    this.setData({
+      defaultArea
+    });
+  },
+
+  onChange(e) {
+    const id = e.target.dataset.id;
+    this.setData({
+      checkedIndex: id,
+      show: false
+    }, () => {
+      this.setDefaultArea();
+    });
   },
 
   onClickLeft() {
-    wx.navigateBack();
+    wx.switchTab({
+      url: '/pages/cart/cart',
+    });
+  },
+
+  handleClick() {
+    this.setData({
+      show: true
+    });
+  },
+
+  onClose() {
+    this.setData({
+      show: false
+    });
   },
 
   /**

@@ -12,7 +12,7 @@ Page({
   onClickLeft() {
     wx.navigateBack()
   },
- 
+   
   /**
    * 生命周期函数--监听页面加载
    */
@@ -24,12 +24,12 @@ Page({
         tokenString: wx.getStorageSync('token')
       },
       success: res => {
-        console.log(res.data.result, '=-=')
+        // console.log(res.data.result, '=-=')
         this.setData({
           areaList: res.data.result
         });
       } 
-    })
+    });
   },
 
   handleAdd() {
@@ -49,14 +49,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**

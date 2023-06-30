@@ -61,10 +61,18 @@ Page({
 
   handleChange(e) {
     const key = e.target.dataset.key;
-    console.log(key, e)
+    // console.log(key, e);
+    const phoneReg = /^1[3456789]\d{9}$/;
+    if (key === 'tel' && !phoneReg.test(e.detail)) {
+      wx.showToast({
+        title: '手机号格式错误',
+        icon: 'error'
+      });
+      return;
+    }
     this.setData({
       [key]: e.detail
-    })
+    });
   },
 
   handleSave() {
@@ -100,30 +108,37 @@ Page({
           wx.showToast({
             title: res.data.msg,
           });
-          wx.navigateBack();
+          wx.navigateTo({
+            url: '/pages/areamanagement/areamanagement',
+          });
         }
       }
     })
   },
 
-  // 做到这里
   handleDel() {
     wx.request({
       url: 'http://www.kangliuyong.com:10002/deleteAddress',
-      method: 'GET',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
       data: {
         appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
         tokenString: wx.getStorageSync('token'),
         aid: this.data.aid
       },
       success: res => {
-        console.log(res, "哈哈哈")
-        // if (res.data.code === 9000) {
-        //   wx.showToast({
-        //     title: res.data.msg,
-        //   });
-        //   wx.navigateBack();
-        // }
+        // console.log(res, "哈哈哈")
+        if (res.data.code === 10000) {
+          wx.showToast({
+            title: res.data.msg,
+          });
+          // wx.navigateTo 跳转回去的页面才会
+          wx.navigateTo({
+            url: '/pages/areamanagement/areamanagement',
+          });
+        }
       }
     })
   },
@@ -140,38 +155,40 @@ Page({
       aid
     });
     // 编辑回显
-    wx.request({
-      url: 'http://www.kangliuyong.com:10002/findAddressByAid',
-      method: 'GET',
-      data: {
-        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
-        tokenString: wx.getStorageSync('token'),
-        aid
-      },
-      success: res => {
-        console.log(res, "哈哈哈")
-        const {
-          name,
-          tel,
-          addressDetail,
-          postalCode,
-          province,
-          city,
-          county,
-          areaCode,
-          isDefault
-        } = res.data.result[0] ?? {};
-        this.setData({
-          name,
-          tel,
-          mainarea: `${province},${city},${county}`,
-          areaCode,
-          addressDetail,
-          postalCode,
-          isDefault: isDefault === 1 ? true : false
-        });
-      }
-    })
+    if (type === 'edit') {
+      wx.request({
+        url: 'http://www.kangliuyong.com:10002/findAddressByAid',
+        method: 'GET',
+        data: {
+          appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+          tokenString: wx.getStorageSync('token'),
+          aid
+        },
+        success: res => {
+          console.log(res, "哈哈哈edit")
+          const {
+            name,
+            tel,
+            addressDetail,
+            postalCode,
+            province,
+            city,
+            county,
+            areaCode,
+            isDefault
+          } = res.data.result[0] ?? {};
+          this.setData({
+            name,
+            tel,
+            mainarea: `${province},${city},${county}`,
+            areaCode,
+            addressDetail,
+            postalCode,
+            isDefault: isDefault === 1 ? true : false
+          });
+        }
+      });
+    }
   },
 
   /**
