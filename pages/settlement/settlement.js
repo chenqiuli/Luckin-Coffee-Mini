@@ -12,29 +12,7 @@ Page({
     defaultArea: {} // 页面上方：选择地址区域默认地址展示
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    // 获取订单信息
-    wx.request({
-      url: 'http://www.kangliuyong.com:10002/commitShopcart',
-      data: {
-        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
-        tokenString: wx.getStorageSync('token'),
-        // 这个入参有问题，接口没提供查询订单页面所有的信息。
-        // 接口没有提供，我在购物车页面点击提交订单后，把商品sid存到localStorage内，取到这里查询。
-        sids: JSON.stringify(wx.getStorageSync('submit_sids'))
-      },
-      success: res => {
-        console.log(res, '=-=')
-        if (res.data.code === 50000) {
-          this.setData({
-            orderList: res.data.result
-          });
-        }
-      }
-    });
+  fetchAreaList() {
     // 获取地址信息
     wx.request({
       url: 'http://www.kangliuyong.com:10002/findAddress',
@@ -58,6 +36,33 @@ Page({
         });
       }
     });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    // 获取订单信息
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/commitShopcart',
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token'),
+        // 这个入参有问题，接口没提供查询订单页面所有的信息。
+        // 接口没有提供，我在购物车页面点击提交订单后，把商品sid存到localStorage内，取到这里查询。
+        sids: JSON.stringify(wx.getStorageSync('submit_sids'))
+      },
+      success: res => {
+        console.log(res, '=-=')
+        if (res.data.code === 50000) {
+          this.setData({
+            orderList: res.data.result
+          });
+        }
+      }
+    });
+    // 初始化请求一次
+    this.fetchAreaList();
   },
 
   setDefaultArea() {
@@ -96,11 +101,43 @@ Page({
     });
   },
 
+  handleAddArea() {
+    wx.navigateTo({
+      url: '/pages/addarea/addarea',
+    });
+  },
+
+  handleSettle() {
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/pay',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token'),
+        sids: JSON.stringify(wx.getStorageSync('submit_sids')),
+        phone: this.data.defaultArea.tel,
+        address: `${this.data.defaultArea.province}${this.data.defaultArea.city}${this.data.defaultArea.county}${this.data.defaultArea.addressDetail}`,
+        receiver: this.data.defaultArea.name,
+      },
+      success: res => {
+        console.log(res)
+        if (res.data.code === 60000) {
+          wx.showToast({
+            title: res.data.msg
+          });
+        }
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    
   },
 
   /**
@@ -114,7 +151,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
+    this.fetchAreaList();
   },
 
   /**

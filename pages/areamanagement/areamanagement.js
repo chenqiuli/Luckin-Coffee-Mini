@@ -12,11 +12,9 @@ Page({
   onClickLeft() {
     wx.navigateBack()
   },
-   
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+
+  // 获取所有地址
+  fetchAreaList() {
     wx.request({
       url: 'http://www.kangliuyong.com:10002/findAddress',
       data: {
@@ -28,8 +26,15 @@ Page({
         this.setData({
           areaList: res.data.result
         });
-      } 
+      }
     });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    this.fetchAreaList();
   },
 
   handleAdd() {
@@ -48,27 +53,25 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-  },
+  onReady() {},
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.fetchAreaList();
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
   },
 
   /**

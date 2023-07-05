@@ -83,37 +83,61 @@ Page({
       })
       return;
     }
-    wx.request({
-      url: 'http://www.kangliuyong.com:10002/addAddress',
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-      },
-      data: {
-        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
-        tokenString: wx.getStorageSync('token'),
-        name: this.data.name,
-        tel: this.data.tel,
-        province: this.data.mainarea.split(",")[0],
-        city: this.data.mainarea.split(",")[1],
-        county: this.data.mainarea.split(",")[2],
-        addressDetail: this.data.addressDetail,
-        areaCode: this.data.areaCode, // 区的编码
-        postalCode: this.data.postalCode,
-        isDefault: this.data.isDefault ? 1 : 0
-      },
-      success: res => {
-        console.log(res, "哈哈哈")
-        if (res.data.code === 9000) {
-          wx.showToast({
-            title: res.data.msg,
-          });
-          wx.navigateTo({
-            url: '/pages/areamanagement/areamanagement',
-          });
+    const params = {
+      appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+      tokenString: wx.getStorageSync('token'),
+      name: this.data.name,
+      tel: this.data.tel,
+      province: this.data.mainarea.split(",")[0],
+      city: this.data.mainarea.split(",")[1],
+      county: this.data.mainarea.split(",")[2],
+      addressDetail: this.data.addressDetail,
+      areaCode: this.data.areaCode, // 区的编码
+      postalCode: this.data.postalCode,
+      isDefault: this.data.isDefault ? 1 : 0,
+    }
+    if (this.data.type === 'add') {
+      wx.request({
+        url: 'http://www.kangliuyong.com:10002/addAddress',
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        data: {
+          ...params,
+        },
+        success: res => {
+          console.log(res, "新增-哈哈哈")
+          if (res.data.code === 9000) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+            wx.navigateBack();
+          }
         }
-      }
-    })
+      });
+    } else {
+      wx.request({
+        url: 'http://www.kangliuyong.com:10002/editAddress',
+        method: 'POST',
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },
+        data: {
+          ...params,
+          aid: this.data.aid
+        },
+        success: res => {
+          console.log(res, "编辑-呼呼呼")
+          if (res.data.code === 30000) {
+            wx.showToast({
+              title: res.data.msg,
+            });
+            wx.navigateBack();
+          }
+        }
+      });
+    }
   },
 
   handleDel() {
@@ -165,7 +189,7 @@ Page({
           aid
         },
         success: res => {
-          console.log(res, "哈哈哈edit")
+          // console.log(res, "哈哈哈edit")
           const {
             name,
             tel,

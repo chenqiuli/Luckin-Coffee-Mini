@@ -5,25 +5,28 @@
   </view>
 
   <view wx:if="{{isLogin}}">
-    <view class="cartslist">
+    <view class="cartslist" wx:if="{{cartList.length}}">
       <CartItem isclickright="{{isclickright}}" cartList="{{cartList}}" bindCountChange="handleCountChange" bindDelCartList="handleSingleDel" bindCheckedChange="handleCheckedChange" />
+    </view>
+    <view wx:else>
+      <van-empty image="error" description="购物车空空如也" />
     </view>
 
     <view class="footer">
       <van-checkbox disabled="{{!isclickright}}" value="{{ allChecked }}" bind:change="handleAllChange">全选</van-checkbox>
-      <view wx:if="{{!isclickright}}">
+      <view wx:if="{{!isclickright}}" class="footerRight">
         <text style="margin-right: 10px;">合计：<text style="color: #ee0a24;font-size: 22px;">￥{{totalCount}}</text></text>
-        <van-button color="#f11a27" round type="default" custom-style="height: 40px" bind:click="handleSubmit">提交订单</van-button>
+        <ButtonCom color="#f11a27" text="提交订单" bindButtonEvent="handleSubmit" />
       </view>
       <view wx:else>
-        <van-button color="#f11a27" round type="default" custom-style="height: 40px" bind:click="handleAllDelete">删除选择</van-button>
+        <ButtonCom color="#f11a27" text="删除选择" bindButtonEvent="handleAllDelete" />
       </view>
     </view>
   </view>
 
   <view wx:else class="login">
     <van-empty image="error" description="请先登录" />
-    <van-button color="#0c34ba" round type="default" custom-style="height: 45px" bind:click="handleLogin">去登录</van-button>
+    <ButtonCom color="#0c34ba" text="去登录" bindButtonEvent="handleLogin" />
   </view>
 
 

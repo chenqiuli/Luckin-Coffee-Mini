@@ -1,0 +1,13 @@
+<van-cell center label="{{data.province}}{{data.city}}{{data.county}}{{data.addressDetail}}" custom-class="{{customClass ? 'default_cell' : undefined}}">
+  <!-- 留下can-cell本身自带的插槽给外部使用 -->
+  <slot slot="icon" name="icon"></slot>
+  <view slot="title">
+    <view class="van-cell-text">
+      <text>{{data.name}} </text>
+      <text>{{data.tel}} </text>
+      <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{data.isDefault}}">默认</van-tag>
+    </view>
+  </view>
+  <!-- 留下can-cell本身自带的插槽给外部使用 -->
+  <slot slot="right-icon" name="right-icon"></slot>
+</van-cell>

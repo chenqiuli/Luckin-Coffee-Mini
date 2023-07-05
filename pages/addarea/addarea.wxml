@@ -22,11 +22,6 @@
     </view>
   </view>
 
-  <view class="save_button">
-    <van-button type="default" bind:click="handleSave" color="#0c34ba" custom-style="width: 100%; height: 40px;" round>保存</van-button>
-  </view>
-
-  <view class="save_button" wx:if="{{type === 'edit'}}">
-    <van-button type="default" bind:click="handleDel" custom-style="width: 100%; height: 40px;" round>删除</van-button>
-  </view>
+  <ButtonCom text="保存" color="#0c34ba" bindButtonEvent="handleSave" />
+  <ButtonCom text="删除" bindButtonEvent="handleDel" isShow="{{type === 'edit'}}" />
 </view>

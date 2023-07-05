@@ -47,20 +47,20 @@
       </view>
 
       <view class="footer">
-        <view class="iconCart iconBag">
-          <van-icon name="bag-o" />
-          <view>购物袋</view>
-          <view class="num">
-            8
+        <view style="display: flex;flex: 3;">
+          <view class="iconCart iconBag" bindtap="handleAddCart">
+            <van-icon name="bag-o" />
+            <view>购物袋</view>
+            <view class="num">
+              {{cartCount}}
+            </view>
+          </view>
+          <view class="iconCart" bindtap="handleCollect">
+            <van-icon name="like" color="{{isCollect ? '#ee0a24' : 'inherit'}}" size="20" />
+            <view>已收藏</view>
           </view>
         </view>
-        <view class="iconCart">
-          <van-icon name="like-o" />
-          <view>已收藏</view>
-        </view>
-        <view bindtap="handleCart" class="addCart">
-          加入购物车
-        </view>
+        <ButtonCom text="加入购物车" color="#0c34ba" bindButtonEvent="handleCart" class="addCart" />
       </view>
 
     </view>

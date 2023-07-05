@@ -1,0 +1,8 @@
+/* components/ButtonCom/ButtonCom.wxss */
+.save_button {
+  height: 60px;
+  padding: 0px 16px;
+  box-sizing: border-box;
+  line-height: 60px;
+  width: 100%;
+}

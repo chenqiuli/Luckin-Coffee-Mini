@@ -8,15 +8,7 @@
       选择地址
       <van-icon name="arrow" bind:click="handleClick" />
     </view>
-    <van-cell center custom-class="default_cell" label="{{defaultArea.province}}{{defaultArea.city}}{{defaultArea.county}}{{defaultArea.addressDetail}}">
-      <view slot="title">
-        <view class="van-cell-text-top">
-          <text>{{defaultArea.name}}  </text>
-          <text>{{defaultArea.tel}}  </text>
-          <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{defaultArea.isDefault}}">默认</van-tag>
-        </view>
-      </view>
-    </van-cell>
+    <AreaCom data="{{defaultArea}}" customClass="{{true}}"></AreaCom>
   </view>
 
   <view class="settleContainer">
@@ -34,10 +26,7 @@
         </view>
       </view>
     </view>
-    <view class="button">
-
-      <van-button color="#0c34ba" round type="default" custom-style="width: 100%; height: 45px" bind:click="handleSettle">立即结算</van-button>
-    </view>
+    <ButtonCom text="立即结算" color="#0c34ba" bindButtonEvent="handleSettle"></ButtonCom>
   </view>
 
   <van-popup closeable position="bottom" show="{{ show }}" custom-class="modal" bind:close="onClose">
@@ -45,16 +34,10 @@
       选择地址
     </view>
     <view wx:for="{{areaList}}" wx:key="item.id" class="cell">
-      <van-cell center label="{{item.province}}{{item.city}}{{item.county}}{{item.addressDetail}}">
+      <AreaCom data="{{item}}">
         <van-checkbox slot="icon" value="{{ checkedIndex === item.id }}" data-id="{{item.id}}" bind:change="onChange"></van-checkbox>
-        <view slot="title">
-          <view class="van-cell-text">
-            <text>{{item.name}} </text>
-            <text>{{item.tel}} </text>
-            <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{item.isDefault}}">默认</van-tag>
-          </view>
-        </view>
-      </van-cell>
+      </AreaCom>
     </view>
+    <ButtonCom text="新增地址" color="#0c34ba" bindButtonEvent="handleAddArea"></ButtonCom>
   </van-popup>
 </view>

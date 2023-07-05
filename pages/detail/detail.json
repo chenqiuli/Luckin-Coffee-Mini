@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
     "TagCom": "../../components/TagCom/TagCom",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "ButtonCom": "../../components/ButtonCom/ButtonCom"
   }
 }

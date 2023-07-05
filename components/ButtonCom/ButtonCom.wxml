@@ -1,0 +1,3 @@
+<view class="save_button" wx:if="{{isShow}}">
+  <van-button type="default" color="{{color}}" bind:click="handleClick" custom-style="width: 100%; height: 40px;" round>{{text}}</van-button>
+</view>

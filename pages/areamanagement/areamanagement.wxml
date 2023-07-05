@@ -1,26 +1,15 @@
 <view class="arearoot">
   <van-nav-bar custom-class="nav" title="地址管理" left-text="返回" left-arrow bind:click-left="onClickLeft" />
 
-  <view wx:for="{{areaList}}" wx:key="item.id" class="cell">
-    <van-cell-group inset>
-      <van-cell center label="{{item.province}}{{item.city}}{{item.county}}{{item.addressDetail}}">
-        <view slot="title">
-          <view class="van-cell-text">
-            <text>{{item.name}} </text>
-            <text>{{item.tel}} </text>
-            <van-tag round type="primary" custom-class="tag" color="#0c34ba" wx:if="{{item.isDefault}}">默认</van-tag>
-          </view>
-        </view>
-        <van-icon size="20px" slot="right-icon" name="edit" class="custom-icon" data-aid="{{item.aid}}" bind:click="handleEdit" />
-      </van-cell>
-    </van-cell-group>
+  <view class="content">
+    <view wx:for="{{areaList}}" wx:key="item.id" class="cell">
+      <van-cell-group inset>
+        <AreaCom data="{{item}}">
+          <van-icon size="20px" slot="right-icon" name="edit" class="custom-icon" data-aid="{{item.aid}}" bind:click="handleEdit" />
+        </AreaCom>
+      </van-cell-group>
+    </view>
   </view>
 
-
-  <view class="add_button">
-
-    <van-button type="default" bind:click="handleAdd" color="#0c34ba" custom-style="width: 100%; height: 40px;" round>新增地址</van-button>
-  </view>
-
-
+  <ButtonCom text="新增地址" color="#0c34ba" bindButtonEvent="handleAdd" />
 </view>

@@ -21,22 +21,15 @@
   margin: 8px 0 10px 0;
 }
 
-.chooseArea .default_cell {
-  padding: 0px !important;
-}
-
 .modal {
-  height: 200px;
-  padding: 18px 10px;
+  height: 600rpx;
+  overflow-y: auto;
+  padding: 20px 10px;
 }
 
 .cell {
   padding-top: 10px;
   box-sizing: border-box;
-}
-
-.van-cell-text {
-  color: #000;
 }
 
 .tag {

@@ -3,10 +3,10 @@
     "van-icon": "@vant/weapp/icon/index",
     "CartItem": "../../components/CartItem/CartItem",
     "van-nav-bar": "@vant/weapp/nav-bar/index",
-    "van-button": "@vant/weapp/button/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-cell": "@vant/weapp/cell/index",
     "van-tag": "@vant/weapp/tag/index",
-    "van-checkbox": "@vant/weapp/checkbox/index"
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "ButtonCom": "../../components/ButtonCom/ButtonCom",
+    "AreaCom": "../../components/AreaCom/AreaCom"
   }
 }

@@ -96,8 +96,15 @@ Page({
       }
     })
 
-    // 获取特卖数据
+    // 初始化获取热卖推荐数据
     this.loadContentData();
+  },
+
+  handleDetail(e) {
+    const pid = e.currentTarget.dataset.pid;
+    wx.navigateTo({
+      url: `/pages/detail/detail?pid=${pid}`,
+    });
   },
 
   /**
