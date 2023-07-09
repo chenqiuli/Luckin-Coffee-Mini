@@ -5,11 +5,16 @@
     <view class="desc">
       {{item.desc}}
     </view>
-    <view class="price" wx:if="{{item.price}}">
-      ￥{{item.price}}
+    <view class="price">
+      <view wx:if="{{item.price}}">
+        ￥{{item.price}}
+      </view>
+      <van-icon name="delete-o" wx:if="{{isDel}}" data-pid="{{item.pid}}" bind:click="handleDel" />
     </view>
-    <view wx:if="{{isHot}}" class="tag">
+
+    <view wx:if="{{item.isHot}}" class="tag">
       热卖
     </view>
   </view>
+  <view class="list_item" wx:if="{{list / 2 !==0}}" />
 </view>

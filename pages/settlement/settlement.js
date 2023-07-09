@@ -128,6 +128,9 @@ Page({
           wx.showToast({
             title: res.data.msg
           });
+          wx.navigateTo({
+            url: '/pages/orderment/orderment',
+          });
         }
       }
     });

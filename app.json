@@ -11,7 +11,8 @@
     "pages/addarea/addarea",
     "pages/settlement/settlement",
     "pages/areamanagement/areamanagement",
-    "pages/orderment/orderment"
+    "pages/orderment/orderment",
+    "pages/collectment/collectment"
   ],
   "window": {
     "backgroundTextStyle": "light",

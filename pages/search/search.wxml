@@ -20,7 +20,7 @@
   </view>
 
   <view class="list" wx-if="{{searchList.length}}">
-    <ListItem list="{{searchList}}" isHot="{{false}}" />
+    <ListItem list="{{searchList}}" />
   </view>
 
   <view wx:else>

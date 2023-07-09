@@ -8,9 +8,9 @@ Component({
       type: Array,
       value: []
     },
-    isHot: {
+    isDel: {
       type: Boolean,
-      value: true,
+      value: false
     }
   },
 
@@ -27,10 +27,14 @@ Component({
   methods: {
     handleDetail(e) {
       const pid = e.target.dataset.pid;
-      console.log(pid);
+      // console.log(pid);
       wx.navigateTo({
         url: `/pages/detail/detail?pid=${pid}`,
       })
+    },
+    handleDel(e) {
+      const pid = e.target.dataset.pid;
+      this.triggerEvent("DelEvent", pid);
     }
   }
 })

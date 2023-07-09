@@ -5,12 +5,12 @@
 
   <view class="tabsContent">
     <van-tabs active="{{ active }}" bind:change="onChange" sticky="{{true}}" offset-top="{{0}}" wrap-class="nav">
-    <van-tab title="全部"></van-tab>
-    <van-tab title="进行中"></van-tab>
-    <van-tab title="已完成"></van-tab>
-    <OrderItem orderList="{{orderList}}" />
-  
-  </van-tabs>
+      <van-tab title="全部"></van-tab>
+      <van-tab title="进行中"></van-tab>
+      <van-tab title="已完成"></van-tab>
+      <OrderItem orderList="{{orderList}}" />
+
+    </van-tabs>
   </view>
 
 </view>
