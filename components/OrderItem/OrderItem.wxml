@@ -1,0 +1,35 @@
+<wxs src="./OrderItem.wxs" module="utils" />
+<view wx:if="{{orderList.length}}" class="orderItem">
+  <view class="orderTitle">
+    订单信息
+  </view>
+  <view wx:for="{{orderList}}" wx:key="index">
+    <view class="orderCode">
+      <view>
+        订单编号：{{item[0]}}
+      </view>
+      <view>
+        {{item[1][0].status === 2 ? '已完成':'确认收货'}}
+        <van-icon name="delete-o" wx:if="{{item[1][0].status === 2}}" size="14" />
+      </view>
+    </view>
+    <view class="cartList">
+      <CartItem cartList="{{item[1]}}" isShowCheckbox="{{false}}" />
+    </view>
+    <view class="desc">
+      <view class="time">
+        {{utils.timeTransfer(item[1][0].createdAt)}}
+      </view>
+      <view class="count">
+        <view>
+          共计 {{utils.totalNum(item[1])}}
+          件商品
+        </view>
+        <view>
+          订单金额：￥{{utils.total(item[1])}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<van-empty description="没有订单数据！" wx:else />

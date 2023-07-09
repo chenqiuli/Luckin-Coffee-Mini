@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "CartItem": "../CartItem/CartItem",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

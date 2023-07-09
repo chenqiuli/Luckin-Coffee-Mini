@@ -1,0 +1,28 @@
+function timeTransfer(time) {
+  return time.slice(0,10) + " " + time.slice(11,19);
+}
+
+
+function totalNum(list) {
+  var total = 0;
+  for (var i = 0; i < list.length; i++) {
+    total += list[i].count;
+  }
+  return total;
+}
+
+
+function total(list) {
+  var total = 0;
+  for (var i = 0; i < list.length; i++) {
+    total += list[i].count * list[i].price;
+  }
+  return total;
+}
+
+
+module.exports = {
+  timeTransfer: timeTransfer,
+  totalNum: totalNum,
+  total: total
+};

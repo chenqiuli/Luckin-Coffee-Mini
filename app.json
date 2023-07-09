@@ -10,7 +10,8 @@
     "pages/myinfo/myinfo",
     "pages/addarea/addarea",
     "pages/settlement/settlement",
-    "pages/areamanagement/areamanagement"
+    "pages/areamanagement/areamanagement",
+    "pages/orderment/orderment"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,16 @@
+<view class="orderment">
+  <van-nav-bar custom-class="nav" title="我的订单" left-text="返回" left-arrow bind:click-left="onClickLeft" />
+
+  <view class="blueBg"></view>
+
+  <view class="tabsContent">
+    <van-tabs active="{{ active }}" bind:change="onChange" sticky="{{true}}" offset-top="{{0}}" wrap-class="nav">
+    <van-tab title="全部"></van-tab>
+    <van-tab title="进行中"></van-tab>
+    <van-tab title="已完成"></van-tab>
+    <OrderItem orderList="{{orderList}}" />
+  
+  </van-tabs>
+  </view>
+
+</view>

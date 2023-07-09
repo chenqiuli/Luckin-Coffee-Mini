@@ -1,0 +1,47 @@
+/* components/OrderItem/OrderItem.wxss */
+.orderItem {
+  padding: 60rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  font-size: 12px;
+}
+
+.orderTitle {
+  font-weight: bold;
+  background-color: #fff;
+  margin-bottom: 36rpx;
+}
+
+.orderCode {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cartList {
+  border-bottom: 1px dotted #e8e8e8;
+  margin-top: 20rpx;
+}
+
+.desc {
+  margin-top: 40rpx;
+  margin-bottom: 46rpx;
+}
+
+.time {
+  color: #444;
+  margin-bottom: 32rpx;
+}
+
+.count {
+  display: flex;
+  justify-content: space-between;
+}
+
+.count >view:first-child{
+  color: #acacac;
+}
+
+.count>view:last-child {
+  color: #e4393c;
+  font-weight: bold;
+}

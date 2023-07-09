@@ -14,7 +14,7 @@ Component({
       type: Boolean,
       value: false
     },
-    // 是否显示单个选项的checkbox，同时控制：右边展示数量（可操作）或展示数量（不可操作）
+    // 是否显示单个选项的checkbox，该变量同时控制：右边展示数量（可操作）或展示数量（不可操作）
     isShowCheckbox: {
       type: Boolean,
       value: true

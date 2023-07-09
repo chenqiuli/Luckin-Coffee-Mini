@@ -3,7 +3,7 @@
     <van-cell-group>
       <view class="cell__content">
         <van-checkbox wx:if="{{isShowCheckbox}}" disabled="{{!isclickright}}" value="{{ item.checked }}" data-sid="{{item.sid}}" bind:change="handleChange"></van-checkbox>
-        <image src="{{item.small_img}}" mode="widthFix" />
+        <image src="{{item.small_img || item.smallImg}}" mode="widthFix" />
         <view class="cell_right">
           <view style="font-size: 14px;">
             <text style="margin-right: 24px;">{{item.name}}</text>
