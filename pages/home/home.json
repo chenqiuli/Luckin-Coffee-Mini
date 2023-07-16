@@ -2,6 +2,5 @@
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",
     "ListItem": "../../components/ListItem/ListItem"
-  },
-  "navigationBarTitleText": "首页"
+  }
 }

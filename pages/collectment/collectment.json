@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-empty": "@vant/weapp/empty/index",
     "ListItem": "../../components/ListItem/ListItem"
   }
 }

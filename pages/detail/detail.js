@@ -28,7 +28,7 @@ Page({
         pid: options.pid,
       },
       success: res => {
-        console.log(res.data.result[0])
+        // console.log(res.data.result[0])
         const {
           tem,
           sugar,
@@ -74,6 +74,13 @@ Page({
 
 
   handleCollect() {
+    if (!wx.getStorageSync('token')) {
+      wx.showToast({
+        title: '请先进行登录',
+        icon: 'error'
+      });
+      return;
+    }
     if (!this.data.isCollect) {
       // 收藏
       wx.request({
@@ -132,13 +139,20 @@ Page({
   },
 
 
-  // 未登录也可以加入购物车
+  // 未登录不可以加入购物车
   handleCart() {
+    if (!wx.getStorageSync('token')) {
+      wx.showToast({
+        title: '请先进行登录',
+        icon: 'error'
+      });
+      return;
+    }
     if (wx.getStorageSync('detailPid') === this.data.detailInfo.pid) {
       let rule = `${wx.getStorageSync('temActive')}/${wx.getStorageSync('sugarActive')}/${wx.getStorageSync('creamActive')}`;
       if (rule[rule.length - 1] === '/') rule = rule.slice(0, rule.length - 1) // 去除最后一个/
       if (rule[0] === '/') rule = rule.slice(1) // 去除第一个/
-      console.log(rule)
+      // console.log(rule)
       wx.request({
         url: 'http://www.kangliuyong.com:10002/addShopcart',
         header: {
@@ -173,7 +187,7 @@ Page({
     }
     this.setData({
       count: this.data.count - 1
-    })
+    });
   },
 
   handleAdd() {
@@ -183,7 +197,7 @@ Page({
     // }
     this.setData({
       count: this.data.count + 1
-    })
+    });
   },
 
   /**

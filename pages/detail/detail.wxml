@@ -57,7 +57,7 @@
           </view>
           <view class="iconCart" bindtap="handleCollect">
             <van-icon name="like" color="{{isCollect ? '#ee0a24' : 'inherit'}}" size="20" />
-            <view>已收藏</view>
+            <view>{{isCollect ? '已收藏' : '未收藏'}}</view>
           </view>
         </view>
         <ButtonCom text="加入购物车" color="#0c34ba" bindButtonEvent="handleCart" class="addCart" />

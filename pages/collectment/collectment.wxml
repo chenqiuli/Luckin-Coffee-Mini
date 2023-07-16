@@ -3,8 +3,10 @@
 
   <view class="blueBg"></view>
 
-  <view class="collectContent">
+  <view class="collectContent" wx:if="{{collectList.length}}">
     <ListItem list="{{collectList}}" isDel="{{true}}" bindDelEvent="handleDel" />
   </view>
+
+  <van-empty description="没有收藏数据！" wx:else="" />
 
 </view>

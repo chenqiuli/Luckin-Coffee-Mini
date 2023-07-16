@@ -1,6 +1,24 @@
-<view>
+<view class="myinfo">
+  <van-nav-bar custom-class="nav" title="个人资料" left-text="返回" left-arrow bind:click-left="onClickLeft" />
 
-  <van-toast id="van-toast" />
-  <van-button type="primary" bindtap="hanldeTap">按钮</van-button>
-  <van-area area-list="{{ areaList }}" value="110107"  />
+  <view class="blueBg"></view>
+
+  <view class="info">
+    <van-cell-group inset="{{true}}">
+      <van-cell title="头像" custom-class="userCell">
+        <view>
+          <image src="{{info.userImg}}" mode="widthFix" class="userImg" />
+        </view>
+      </van-cell>
+      <van-cell title="用户id" value="{{info.userId}}" />
+      <van-cell title="手机号" value="{{info.phone}}" />
+      <van-cell title="昵称" custom-class="inputCell">
+        <van-field value="{{ info.nickName }}" border="{{ false }}" input-align="right" input-class="inputValue" bind:change="onChangeName" />
+      </van-cell>
+      <van-cell title="简介" custom-class="descCell">
+        <van-field name="label" value="{{ info.desc }}" input-align="left" border="{{ false }}" input-class="inputValue" custom-class="descValue" bind:change="onChangeDesc" />
+      </van-cell>
+    </van-cell-group>
+  </view> 
+
 </view>

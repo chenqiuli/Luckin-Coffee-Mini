@@ -56,7 +56,7 @@ Page({
       success: res => {
         if (res.data.code === 900) {
           wx.showToast({
-            title: "商品已删除"
+            title: "商品已取消收藏"
           });
           this.fetchCollectList();
         }

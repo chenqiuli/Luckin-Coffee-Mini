@@ -1,5 +1,6 @@
 function timeTransfer(time) {
-  return time.slice(0,10) + " " + time.slice(11,19);
+  // console.log(time.slice(11,13) + Number(8))
+  return time.slice(0, 10) + " " + time.slice(11, 19);
 }
 
 

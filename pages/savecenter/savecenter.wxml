@@ -1,0 +1,12 @@
+<view class="savecenter">
+  <van-nav-bar custom-class="nav" title="安全中心" left-text="返回" left-arrow bind:click-left="onClickLeft" />
+
+  <view class="blueBg"></view>
+
+  <van-cell-group inset="{{true}}" custom-class="info">
+    <van-cell title="修改密码" is-link bindtap="handleEditPwd" />
+    <van-cell title="注销账号" is-link bindtap="handleZhuXiao" />
+  </van-cell-group>
+
+  <ButtonCom text="退出登录" color="#0c34ba" bindButtonEvent="handleLogout" />
+</view>

@@ -6,14 +6,9 @@ Page({
    */
   data: {
     info: {},
-    base64: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-    // 获取个人信息
+  fetchInfo() {
     wx.request({
       url: 'http://www.kangliuyong.com:10002/findMy',
       data: {
@@ -30,14 +25,22 @@ Page({
           this.setData({
             info: result[0]
           })
-        }
-        if (code === 700) {
+        } else if (code === 700) {
           wx.redirectTo({
             url: '/pages/login/login',
           })
         }
       }
-    })
+    });
+  },
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+    // 获取个人信息
+    this.fetchInfo();
   },
 
   handleChooseBg() {
@@ -49,14 +52,11 @@ Page({
           filePath: res.tempFilePaths[0],
           encoding: 'base64',
           success: res2 => {
-            // console.log("data:image/png;base64," + res2.data)
-            this.setData({
-              base64: "data:image/png;base64," + res2.data
-            })
+            // console.log( res2.data)
             wx.getStorage({
               key: "token",
               success: res => {
-                if (this.data.base64 != null) {
+                if (res2.data != null) {
                   wx.request({
                     url: 'http://www.kangliuyong.com:10002/updateUserBg',
                     method: 'POST',
@@ -64,19 +64,13 @@ Page({
                       appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
                       tokenString: res.data,
                       imgType: 'jpg',
-                      serverBase64Img: this.data.base64
+                      serverBase64Img: res2.data
                     },
                     header: {
                       'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
                     },
                     success: () => {
                       this.onLoad();
-                      // this.setData({
-                      //   info: {
-                      //     ...this.data.info,
-                      //     userBg: this.data.base64
-                      //   },
-                      // });
                     }
                   })
                 }
@@ -85,7 +79,46 @@ Page({
           }
         })
       }
-    })
+    });
+  },
+
+  handleChooseUser() {
+    wx.chooseImage({
+      success: res => {
+        // console.log(res)
+        // 获取文件资源管理器的方法
+        wx.getFileSystemManager().readFile({
+          filePath: res.tempFilePaths[0],
+          encoding: 'base64',
+          success: res2 => {
+            // console.log( res2.data)
+            wx.getStorage({
+              key: "token",
+              success: res => {
+                if (res2.data != null) {
+                  wx.request({
+                    url: 'http://www.kangliuyong.com:10002/updateAvatar',
+                    method: 'POST',
+                    data: {
+                      appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+                      tokenString: res.data,
+                      imgType: 'jpg',
+                      serverBase64Img: res2.data
+                    },
+                    header: {
+                      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+                    },
+                    success: () => {
+                      this.onLoad();
+                    }
+                  })
+                }
+              }
+            })
+          }
+        })
+      }
+    });
   },
 
   handleInfo() {
@@ -112,32 +145,34 @@ Page({
     })
   },
 
+  handleSave() {
+    wx.navigateTo({
+      url: "/pages/savecenter/savecenter"
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide() {
-
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
   },
 
   /**

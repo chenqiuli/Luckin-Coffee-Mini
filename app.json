@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/savecenter/savecenter",
     "pages/home/home",
     "pages/cart/cart",
     "pages/menu/menu",
@@ -7,17 +8,17 @@
     "pages/login/login",
     "pages/search/search",
     "pages/detail/detail",
-    "pages/myinfo/myinfo",
     "pages/addarea/addarea",
     "pages/settlement/settlement",
     "pages/areamanagement/areamanagement",
     "pages/orderment/orderment",
-    "pages/collectment/collectment"
+    "pages/collectment/collectment",
+    "pages/myinfo/myinfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#14C145",
-    "navigationBarTitleText": "YY商城",
+    "navigationBarBackgroundColor": "#0c34ba",
+    "navigationBarTitleText": "物语咖啡店",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -46,7 +47,7 @@
         "selectedIconPath": "./images/mine_selected.png"
       }
     ],
-    "selectedColor": "#14C145",
+    "selectedColor": "#0c34ba",
     "borderStyle": "white"
   },
   "sitemapLocation": "sitemap.json",

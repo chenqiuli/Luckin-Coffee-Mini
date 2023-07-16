@@ -16,5 +16,5 @@
       热卖
     </view>
   </view>
-  <view class="list_item" wx:if="{{list / 2 !==0}}" />
+  <!-- <view class="list_item" wx:if="{{list / 2 !== 0}}" /> -->
 </view>
