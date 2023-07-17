@@ -14,3 +14,49 @@
   margin-top: -50rpx !important;
   margin-bottom: 220rpx !important;
 }
+
+.popupBox {
+  padding: 24px 20px;
+}
+
+.popupBox .title {
+  font-size: 18px;
+  margin-bottom: 46px;
+}
+
+.popupBox .popupField {
+  margin-bottom: 54px;
+}
+
+.zhuxiaoContainer {
+  padding: 30px 40px !important;
+}
+
+.zhuxiaoContainer .title {
+  font-size: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.zhuxiaoContainer .desc {
+  font-size: 14px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.zhuxiaoContainer .buttons {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
+
+.zhuxiaoContainer .buttons>view:last-child{
+  color: #0c34ba;
+}
+
+.zhuxiaoPopup {
+  width: 320px;
+  height: auto;
+  border-radius: 10px;
+}
+

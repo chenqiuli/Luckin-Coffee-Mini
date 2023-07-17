@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/savecenter/savecenter",
     "pages/home/home",
     "pages/cart/cart",
     "pages/menu/menu",
@@ -13,7 +12,8 @@
     "pages/areamanagement/areamanagement",
     "pages/orderment/orderment",
     "pages/collectment/collectment",
-    "pages/myinfo/myinfo"
+    "pages/myinfo/myinfo",
+    "pages/savecenter/savecenter"
   ],
   "window": {
     "backgroundTextStyle": "light",

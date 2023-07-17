@@ -9,4 +9,55 @@
   </van-cell-group>
 
   <ButtonCom text="退出登录" color="#0c34ba" bindButtonEvent="handleLogout" />
+
+  <van-popup show="{{ showPwd }}" position="bottom" closeable custom-style="height: auto;" bind:close="handleEditPwd">
+    <view class="popupBox">
+      <view class="title">
+        修改密码
+      </view>
+      <van-cell-group custom-class="popupField">
+        <van-field model:value="{{ password }}" type="password" label="旧密码" placeholder="输入密码" icon="closed-eye" border="{{ false }}" />
+        <van-field model:value="{{ oldPassword }}" type="password" label="新密码" placeholder="输入密码" icon="closed-eye" border="{{ false }}" />
+      </van-cell-group>
+      <ButtonCom text="确认修改" color="#0c34ba" bindButtonEvent="handleUpdatePwd" />
+    </view>
+  </van-popup>
+
+  <van-dialog use-slot="{{true}}" show="{{ showZhuxiao }}" show-confirm-button="{{false}}" custom-class="zhuxiaoPopup">
+    <view class="zhuxiaoContainer">
+      <view class="title">
+        注销账号
+      </view>
+      <view class="desc">
+        是否确认注销号，一旦确认无法回复！
+      </view>
+      <view class="buttons">
+        <view bindtap="handleZhuXiao">
+          取消
+        </view>
+        <view bindtap="handleSureZhuxiao">
+          确认
+        </view>
+      </view>
+    </view>
+  </van-dialog>
+
+  <van-dialog use-slot="{{true}}" show="{{ showLogout }}" show-confirm-button="{{false}}" custom-class="zhuxiaoPopup">
+    <view class="zhuxiaoContainer">
+      <view class="title">
+        退出登录
+      </view>
+      <view class="desc">
+        是否确认退出登录！
+      </view>
+      <view class="buttons">
+        <view bindtap="handleLogout">
+          取消
+        </view>
+        <view bindtap="handleSureLogout">
+          确认
+        </view>
+      </view>
+    </view>
+  </van-dialog>
 </view>

@@ -3,6 +3,9 @@
     "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
-    "ButtonCom": "../../components/ButtonCom/ButtonCom"
+    "ButtonCom": "../../components/ButtonCom/ButtonCom",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }
