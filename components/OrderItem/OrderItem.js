@@ -14,18 +14,23 @@ Component({
    * 组件的初始数据
    */
   data: {
-    
+
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    handleReceive(event) {
+      this.triggerEvent("ReceiveEvent", event.target.dataset.oid);
+    },
+    hanldeDelOrder(event){
+      this.triggerEvent("DelOrderEvent", event.target.dataset.oid);
+    }
   },
 
   lifetimes: {
-    attached () {
+    attached() {
       // 在组件实例进入页面节点树时执行
     },
     detached: function () {

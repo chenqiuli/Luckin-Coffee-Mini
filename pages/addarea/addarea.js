@@ -107,12 +107,16 @@ Page({
           ...params,
         },
         success: res => {
-          console.log(res, "新增-哈哈哈")
+          // console.log(res, "新增-哈哈哈")
           if (res.data.code === 9000) {
             wx.showToast({
               title: res.data.msg,
             });
             wx.navigateBack();
+            // 让上个页面刷新
+            let pages = getCurrentPages();
+            let prePages = pages[pages.length - 2]; //获取上一个页面的对象
+            prePages.fetchAreaList(); //调用上一个页面里的更新函数
           }
         }
       });
@@ -128,7 +132,7 @@ Page({
           aid: this.data.aid
         },
         success: res => {
-          console.log(res, "编辑-呼呼呼")
+          // console.log(res, "编辑-呼呼呼")
           if (res.data.code === 30000) {
             wx.showToast({
               title: res.data.msg,

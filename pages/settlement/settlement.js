@@ -38,10 +38,7 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+  fetchOrderList() {
     // 获取订单信息
     wx.request({
       url: 'http://www.kangliuyong.com:10002/commitShopcart',
@@ -53,7 +50,7 @@ Page({
         sids: JSON.stringify(wx.getStorageSync('submit_sids'))
       },
       success: res => {
-        console.log(res, '=-=')
+        // console.log(res, '=-=')
         if (res.data.code === 50000) {
           this.setData({
             orderList: res.data.result
@@ -61,7 +58,14 @@ Page({
         }
       }
     });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
     // 初始化请求一次
+    this.fetchOrderList();
     this.fetchAreaList();
   },
 
@@ -103,11 +107,18 @@ Page({
 
   handleAddArea() {
     wx.navigateTo({
-      url: '/pages/addarea/addarea',
+      url: '/pages/addarea/addarea?type=add',
     });
   },
 
   handleSettle() {
+    if (!Object.keys(this.data.defaultArea).length) {
+      wx.showToast({
+        title: '请选择地址',
+        icon: 'error'
+      });
+      return;
+    }
     wx.request({
       url: 'http://www.kangliuyong.com:10002/pay',
       method: 'POST',
@@ -140,7 +151,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    
+
   },
 
   /**

@@ -69,6 +69,10 @@ Page({
             wx.switchTab({
               url: '/pages/home/home',
             });
+            // // 在当前页面获取上一个页面，然后调用上一个页面的更新函数去刷新页面
+            // let pages = getCurrentPages();
+            // let prePages = pages[pages.length - 2]; //获取上一个页面的对象
+            // prePages.fetchPersonalInfo(); //调用上一个页面里的更新函数
           } else {
             wx.showToast({
               title: '未知错误',

@@ -10,6 +10,52 @@ Page({
     orderList: []
   },
 
+  handleReceive(event) {
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/receive',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token'),
+        oid: event.detail
+      },
+      success: res => {
+        if (res.data.code === 80000) {
+          wx.showToast({
+            title: res.data.msg,
+          });
+          this.fetchOrderList();
+        }
+      }
+    });
+  },
+
+  handleDelOrder(event) {
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/removeOrder',
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+      },
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token'),
+        oid: event.detail
+      },
+      success: res => {
+        if (res.data.code === 90000) {
+          wx.showToast({
+            title: res.data.msg,
+          });
+          this.fetchOrderList();
+        }
+      }
+    });
+  },
+
   onChange(event) {
     this.setData({
       active: event.detail.index
@@ -20,6 +66,10 @@ Page({
 
   onClickLeft() {
     wx.navigateBack();
+    // 在当前页面获取上一个页面，然后调用上一个页面的更新函数去刷新页面
+    let pages = getCurrentPages();
+    let prePages = pages[pages.length - 2]; //获取上一个页面的对象
+    prePages.fetchInfo(); //调用上一个页面里的更新函数
   },
 
   fetchOrderList() {
@@ -30,7 +80,7 @@ Page({
         appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
         tokenString: wx.getStorageSync('token'),
         // 其中 status 值为 0, 1, 2 ==> 0: 全部，1: 进行中，2: 已完成
-        status: this.data.active 
+        status: this.data.active
       },
       success: (res) => {
         // console.log(res.data.result)
@@ -46,7 +96,7 @@ Page({
           result[key].push(item);
           return result;
         }, {});
-        console.log(Object.entries(oidGroup), 'oidGroup')
+        // console.log(Object.entries(oidGroup), 'oidGroup')
 
 
         this.setData({

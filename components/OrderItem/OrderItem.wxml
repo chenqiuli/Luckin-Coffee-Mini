@@ -8,9 +8,12 @@
       <view>
         订单编号：{{item[0]}}
       </view>
-      <view>
-        {{item[1][0].status === 2 ? '已完成':'确认收货'}}
-        <van-icon name="delete-o" wx:if="{{item[1][0].status === 2}}" size="14" />
+      <view wx:if="{{item[1][0].status === 2}}">
+        已完成
+        <van-icon name="delete-o" size="14" bind:click="hanldeDelOrder" data-oid="{{item[0]}}" />
+      </view>
+      <view wx:else bindtap="handleReceive" data-oid="{{item[0]}}">
+        确认收货
       </view>
     </view>
     <view class="cartList">

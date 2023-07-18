@@ -11,6 +11,28 @@ Page({
     nickName: ""
   },
 
+  fetchPersonalInfo() {
+    // 获取个人信息
+    wx.request({
+      url: 'http://www.kangliuyong.com:10002/findMy',
+      data: {
+        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
+        tokenString: wx.getStorageSync('token')
+      },
+      success: res => {
+        const {
+          code,
+          result
+        } = res.data ?? {};
+        if (code === "A001") {
+          this.setData({
+            nickName: result[0].nickName
+          })
+        }
+      }
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载，只会执行一次
    */
@@ -56,26 +78,9 @@ Page({
           hotList: res.data.result
         })
       }
-    })
-    // 获取个人信息
-    wx.request({
-      url: 'http://www.kangliuyong.com:10002/findMy',
-      data: {
-        appkey: "U2FsdGVkX19WSQ59Cg+Fj9jNZPxRC5y0xB1iV06BeNA=",
-        tokenString: wx.getStorageSync('token')
-      },
-      success: res => {
-        const {
-          code,
-          result
-        } = res.data ?? {};
-        if (code === "A001") {
-          this.setData({
-            nickName: result[0].nickName
-          })
-        }
-      }
-    })
+    });
+
+    this.fetchPersonalInfo();
   },
 
   handleInput() {
@@ -105,6 +110,7 @@ Page({
     this.setData({
       token: wx.getStorageSync('token')
     });
+    this.fetchPersonalInfo();
   },
 
   /**

@@ -8,8 +8,7 @@
       <van-tab title="全部"></van-tab>
       <van-tab title="进行中"></van-tab>
       <van-tab title="已完成"></van-tab>
-      <OrderItem orderList="{{orderList}}" />
-
+      <OrderItem orderList="{{orderList}}" bindReceiveEvent="handleReceive" bindDelOrderEvent="handleDelOrder" />
     </van-tabs>
   </view>
 
