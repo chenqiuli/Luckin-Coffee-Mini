@@ -14,3 +14,5 @@ let pages = getCurrentPages();
 let prePages = pages[pages.length - 2]; //获取上一个页面的对象
 prePages.fetchInfo(); //调用上一个页面里的更新函数
 ```
+
+### 引入VantUI，VantUI文档有介绍，
